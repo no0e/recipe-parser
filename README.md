@@ -17,12 +17,12 @@ during training or while writing the rules**.
 | rule-based (regex + headers) | 1.000 | 0.613 | 0.613 | 0.550 | 0.355 | 0.518 |
 | Qwen2.5-1.5B zero-shot | 0.760 | 0.107 | 0.468 | 0.745 | 0.550 | 0.405 |
 | Qwen2.5-1.5B one-shot | 0.810 | 0.179 | 0.542 | 0.810 | 0.740 | 0.315 |
-| **Qwen2.5-1.5B + QLoRA** | **0.975** | **0.938** | **0.940** | **0.965** | **0.975** | **0.925** |
+| **Qwen2.5-1.5B + QLoRA** | **0.980** | **0.929** | **0.935** | **0.970** | **0.980** | **0.940** |
 
 - *ingredient F1*: exact match on the `(quantity, unit, name)` triple; *name F1*: name only.
 - The rules are near-perfect (0.999 F1) on pages using the training layouts but break on new ones; prompting alone
   gets the gist but not the exact format (canonical units, numeric quantities). Fine-tuning gets both.
-- Training: 2,000 examples, 1 epoch, LoRA r=16 on all linear layers, 4-bit NF4 base, ~70 min on a single T4.
+- Training: 2,000 examples, 1 epoch, LoRA r=16 on all linear layers, 4-bit NF4 base, ~70 min on a single T4. A second training run gave 0.938 ingredient F1 (vs 0.929 above): results are stable across runs.
 
 ## How it works
 
