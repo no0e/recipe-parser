@@ -1,0 +1,6 @@
+-r requirements.txt
+torch
+transformers>=4.45
+peft>=0.13
+bitsandbytes>=0.44
+accelerate
