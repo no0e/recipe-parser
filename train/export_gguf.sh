@@ -11,6 +11,5 @@ PeftModel.from_pretrained(model, "outputs/lora").merge_and_unload().save_pretrai
 AutoTokenizer.from_pretrained("$BASE").save_pretrained("outputs/merged")
 PY
 [ -d outputs/llama.cpp ] || git clone --depth 1 https://github.com/ggml-org/llama.cpp outputs/llama.cpp
-pip install -q -r outputs/llama.cpp/requirements/requirements-convert_hf_to_gguf.txt
 python outputs/llama.cpp/convert_hf_to_gguf.py outputs/merged --outtype q8_0 --outfile outputs/recipe-parser-q8_0.gguf
 ls -lh outputs/recipe-parser-q8_0.gguf
