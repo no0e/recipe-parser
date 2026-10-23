@@ -53,7 +53,7 @@ def main():
         args=TrainingArguments(
             output_dir=args.out, num_train_epochs=args.epochs, learning_rate=2e-4,
             per_device_train_batch_size=2, gradient_accumulation_steps=8, per_device_eval_batch_size=2,
-            lr_scheduler_type="cosine", warmup_ratio=0.03, fp16=True,
+            lr_scheduler_type="cosine", warmup_steps=10, fp16=True,
             logging_steps=10, eval_strategy="steps", eval_steps=50, save_strategy="no", report_to="none",
         ),
     )
