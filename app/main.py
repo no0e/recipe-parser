@@ -15,7 +15,7 @@ from recipe_parser.prompt import messages, parse_output
 from recipe_parser.schema import Ingredient, Recipe
 
 llm = Llama(model_path=os.environ.get("MODEL_PATH", "/models/model.gguf"),
-            n_ctx=4096, n_threads=os.cpu_count(), verbose=False)
+            n_ctx=4096, n_threads=int(os.environ.get("N_THREADS", 4)), verbose=False)
 app = FastAPI(title="recipe-parser")
 
 
