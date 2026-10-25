@@ -10,7 +10,7 @@ honest baselines, and served on CPU as an API on **Google Cloud Run**.
 **Live demo:** https://recipe-parser-op6ngw557q-ew.a.run.app/demo (CPU only: ~1 min per recipe, plus a cold start)
 · **Model:** [no0e/recipe-parser-qwen2.5-1.5b-gguf](https://huggingface.co/no0e/recipe-parser-qwen2.5-1.5b-gguf)
 
-![Gradio demo: a noisy page is parsed, scaled from 6 to 12 servings and turned into a shopping list](docs/demo.jpg)
+![Gradio demo: a noisy page is parsed, scaled from 4 to 8 servings and turned into a shopping list](docs/demo.png)
 
 ## Results
 
