@@ -7,6 +7,11 @@ number of servings and turned into a merged shopping list.
 The extraction is done by a **small LLM (Qwen2.5-1.5B-Instruct) fine-tuned with QLoRA**, compared against
 honest baselines, and served on CPU as an API on **Google Cloud Run**.
 
+**Live demo:** https://recipe-parser-op6ngw557q-ew.a.run.app/demo (CPU only: ~1 min per recipe, plus a cold start)
+· **Model:** [no0e/recipe-parser-qwen2.5-1.5b-gguf](https://huggingface.co/no0e/recipe-parser-qwen2.5-1.5b-gguf)
+
+![Gradio demo: a noisy page is parsed, scaled from 6 to 12 servings and turned into a shopping list](docs/demo.jpg)
+
 ## Results
 
 Test set: 200 recipes rendered with page layouts (section headers, bullets, ads, story sentences) **never seen
@@ -74,7 +79,7 @@ MODEL_PATH=outputs/recipe-parser-q8_0.gguf uvicorn app.main:app --port 8080
 | `GET /demo` | | Gradio UI |
 
 Speed on CPU (llama-bench, q8_0, 14 threads): 126 tok/s prompt processing, 23 tok/s generation, i.e. roughly
-35 s for a typical recipe. llama-cpp-python is compiled with AVX2 in the image: the generic prebuilt wheel was ~6x slower.
+35 s for a typical recipe (~60 s measured on Cloud Run with 8 vCPU). llama-cpp-python is compiled with AVX2 in the image: the generic prebuilt wheel was ~6x slower.
 
 Deploy to Cloud Run (the image downloads the GGUF model from the Hugging Face Hub at build time):
 
