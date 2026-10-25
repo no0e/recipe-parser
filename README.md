@@ -73,8 +73,11 @@ MODEL_PATH=outputs/recipe-parser-q8_0.gguf uvicorn app.main:app --port 8080
 | `POST /shopping-list` | `[recipe, recipe, ...]` | merged ingredients |
 | `GET /demo` | | Gradio UI |
 
+Speed on CPU (llama-bench, q8_0, 14 threads): 126 tok/s prompt processing, 23 tok/s generation, i.e. roughly
+35 s for a typical recipe. llama-cpp-python is compiled with AVX2 in the image: the generic prebuilt wheel was ~6x slower.
+
 Deploy to Cloud Run (the image downloads the GGUF model from the Hugging Face Hub at build time):
 
 ```bash
-gcloud run deploy recipe-parser --source . --region europe-west1 --memory 4Gi --cpu 4 --allow-unauthenticated
+gcloud run deploy recipe-parser --source . --region europe-west1 --memory 4Gi --cpu 8 --concurrency 1 --timeout 300 --allow-unauthenticated
 ```
