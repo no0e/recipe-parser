@@ -79,5 +79,5 @@ Speed on CPU (llama-bench, q8_0, 14 threads): 126 tok/s prompt processing, 23 to
 Deploy to Cloud Run (the image downloads the GGUF model from the Hugging Face Hub at build time):
 
 ```bash
-gcloud run deploy recipe-parser --source . --region europe-west1 --memory 4Gi --cpu 8 --concurrency 1 --timeout 300 --allow-unauthenticated
+gcloud run deploy recipe-parser --source . --region europe-west1 --memory 4Gi --cpu 8 --concurrency 1 --max-instances 1 --timeout 300 --allow-unauthenticated
 ```
