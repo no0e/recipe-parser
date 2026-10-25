@@ -9,8 +9,12 @@ language: [en]
 Turns a noisy recipe blog page (story, ads, comments) into structured JSON:
 `{"title", "servings", "ingredients": [{"quantity", "unit", "name"}], "steps": [{"step", "text", "duration_minutes"}]}`.
 
-Fine-tuned with QLoRA (r=16, 4-bit NF4) on 2,000 synthetic noisy pages built from Epicurious recipes (CC BY-SA 3.0),
-then merged and converted to GGUF (8-bit) for CPU inference with llama.cpp.
+Fine-tuned with QLoRA (r=16 on all linear layers, 4-bit NF4 base) on 2,000 synthetic noisy pages built from
+Epicurious recipes (CC BY-SA 3.0), then merged and converted to GGUF (8-bit) for CPU inference with llama.cpp.
+
+- Trainable parameters: 18.5M, 1.2% of the model (`print_trainable_parameters` in `train/train_qlora.py`).
+- Data: about 6.7k Epicurious recipes pass the length filter in `data/build_dataset.py`; 2,000 / 100 / 200 of them,
+  disjoint, are rendered into the train / val / test pages, with test page layouts never seen in training.
 
 | method (held-out page layouts, 200 recipes) | ingredient F1 | valid JSON |
 |---|---|---|
