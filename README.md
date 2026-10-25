@@ -61,7 +61,7 @@ app/             FastAPI API + Gradio demo (/demo)
 
 ```bash
 pip install -r requirements-gpu.txt
-bash scripts_onyxia.sh          # dataset, baselines, training, evaluation (GPU)
+bash run_all.sh                 # dataset, baselines, training, evaluation (one 16 GB GPU, ~3 h)
 bash train/export_gguf.sh       # merge LoRA + convert to GGUF (8-bit) for CPU serving
 ```
 

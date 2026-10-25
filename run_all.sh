@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Everything that needs the GPU, in order. Run from the repo root on Onyxia (T4).
+# Full pipeline on a single GPU (tested on a 16 GB T4): data, baselines, training, evaluation. Run from the repo root.
 set -e
 pip install -q -r requirements-gpu.txt
 python -m data.build_dataset
